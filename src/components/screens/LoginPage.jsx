@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { Text, Vibration, View } from "react-native";
 import { SafeAreaView, StyleSheet, TextInput } from "react-native";
 import MyButton from "../MyButton";
 
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         color: '#d49b96',
         fontSize: 20,
-        marginTop: 12 
+        marginTop: 12,
     },
     containerInput: {
         marginTop: 88,
@@ -45,21 +45,45 @@ const styles = StyleSheet.create({
     },
     button: {
         borderRadius: 10,
-    }
+    },
+    error: {
+        color: '#f00',
+        paddingLeft: 16,
+        fontStyle: 'italic'
+    },
 })
 
 
 const LoginPage = () => {
 
-    const [email, onChangeEmail] = useState('')
-    const [password, onChangePassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [errorMessageEmail, setErrorMessageEmail] = useState('')
+    const [errorMessagePassword, setErrorMessagePassword] = useState('')
 
-    const onPressLogin = () => {
+    const validationLogin = () => {
+        const emailValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
 
-    }
-
-    const onPressClear = () => {
-
+        if(emailValid.test(email)){
+            if(password.length < 8){
+                Vibration.vibrate()
+                setErrorMessageEmail('')
+                setErrorMessagePassword('Senha invalida')
+            }else{
+                setErrorMessageEmail('')
+                setErrorMessagePassword('')
+            }
+        }else{
+            if(password.length < 8){
+                Vibration.vibrate()
+                setErrorMessagePassword('Senha invalida')
+                setErrorMessageEmail('Email invalido')
+            }else{
+                Vibration.vibrate()
+                setErrorMessagePassword('')
+                setErrorMessageEmail('Email invalido')
+            }
+        }
     }
 
     return (
@@ -68,24 +92,35 @@ const LoginPage = () => {
                 <View>
                     <Text style={styles.containerTitle}>SEU LOGIN</Text>
                 </View>
-                <View style={styles.containerInput}>
-                    <Text style={styles.text}>Insira seu email: </Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={onChangeEmail}
-                        value={email}
-                    />
-                    <Text style={styles.text}>insira sua senha: </Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={onChangePassword}
-                        value={password}
-                    />
+                <View>
+                    <View style={styles.containerInput}>
+                        <Text style={styles.text}>Insira seu email: 
+                            <Text style={styles.error}> {errorMessageEmail}</Text>
+                        </Text>
+                        <TextInput
+                            placeholder="exemple@email.com"
+                            keyboardType="email-address"
+                            style={styles.input}
+                            onChangeText={setEmail}
+                            value={email}
+                        />
+                        <Text style={styles.text}>insira sua senha: 
+                            <Text style={styles.error}> {errorMessagePassword}</Text>
+                        </Text>
+                        <TextInput
+                            placeholder="password"
+                            keyboardType="default"
+                            style={styles.input}
+                            onChangeText={setPassword}
+                            value={password}
+                            secureTextEntry={true}
+                        />
+                    </View>
                 </View>
                 <View>
                     <MyButton
                         title="Login"
-                        onPressButton={onPressLogin}
+                        onPressButton={validationLogin}
                     />
                 </View>
             </View>
