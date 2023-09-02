@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const styles = StyleSheet.create({
     containerSafeArea: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     body: {
         backgroundColor: '#412',
         height: '100%',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     containerBody: {
         shadowColor: "#d49b96",
@@ -22,27 +22,33 @@ const styles = StyleSheet.create({
         padding: 16,
         margin: 10,
         backgroundColor: '#d49b96',
+        borderRadius: 16,
         alignItems: 'center'
     },
     text: {
-        color: '#412'
+        color: '#412',
+        fontSize: 18,
+        fontWeight: 'bold',
+        height: 34
     }
 })
 
-const CountriesItem = ({country, flagUrl}) => {
+const CountriesItem = ({country}) => {
+
+    console.log(country)
+
     return (
-        <View style={styles.containerBody}>
+        <TouchableOpacity style={styles.containerBody}>
             <Text style={styles.text}>Nome do Pais: {country.name.common}</Text>
             <Text style={styles.text}>Capital: {country.capital}</Text>
-            <Image source={{uri: flagUrl}}/>
-        </View>
+            <Image source={{uri: country.flags.png}} style={{width: 240, height: 144}}/>
+        </TouchableOpacity>
     )
 }
 
 const Home = () => {
 
     const [countries, setCountries] = useState()
-    // const [flagUrl, setFlagUrl] = useState()
 
     const fetchCountries = async () => {
         try {
@@ -52,22 +58,6 @@ const Home = () => {
             console.log(error)
         }
     }
-
-    // const fetchFlagUrls = async () => {
-    //     try {
-    //         const response = await axios.get(`https://restcountries.com/data/all.json`)
-    //         const flagData = response.data.reduce((acc, country) => {
-    //             if(country.flags && country.flags.png) {
-    //                 acc[country.cca3] = country.flags.png;
-    //             }
-    //             return acc
-    //         }, {});
-    //         setFlagUrl(flagData);
-    //     } catch (error) {
-    //         console.log(error)
-    //         return null;
-    //     }
-    // }
 
     useEffect(() => {
         fetchCountries()

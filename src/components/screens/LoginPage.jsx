@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Text, Vibration, View } from "react-native";
+import { Image, Text, Vibration, View } from "react-native";
 import { SafeAreaView, StyleSheet, TextInput } from "react-native";
+import '../images/planetinha.gif'
 import MyButton from "../MyButton";
 
 const styles = StyleSheet.create({
@@ -39,9 +40,10 @@ const styles = StyleSheet.create({
     },
     containerTitle: {
         marginTop: 68,
-        fontSize: 30,
+        fontSize: 52,
         fontWeight: 'bold',
         color: '#c77f79',
+        textAlign: 'center'
     },
     button: {
         borderRadius: 10,
@@ -51,10 +53,14 @@ const styles = StyleSheet.create({
         paddingLeft: 16,
         fontStyle: 'italic'
     },
+    imageContainer: {
+        height: 200,
+        resizeMode: 'contain',
+        marginBottom: -58
+    }
 })
 
-
-const LoginPage = () => {
+const LoginPage = ({navigation}) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -62,7 +68,7 @@ const LoginPage = () => {
     const [errorMessagePassword, setErrorMessagePassword] = useState('')
 
     const validationLogin = () => {
-        const emailValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
+        const emailValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
         if(emailValid.test(email)){
             if(password.length < 8){
@@ -72,6 +78,7 @@ const LoginPage = () => {
             }else{
                 setErrorMessageEmail('')
                 setErrorMessagePassword('')
+                navigation.navigate('Home')
             }
         }else{
             if(password.length < 8){
@@ -90,7 +97,11 @@ const LoginPage = () => {
         <SafeAreaView style={styles.containerSafeArea}>
             <View style={styles.body}>
                 <View>
-                    <Text style={styles.containerTitle}>SEU LOGIN</Text>
+                    <Text style={styles.containerTitle}>PAISES</Text>
+                    <Image
+                        style={styles.imageContainer}
+                        source={require('../images/planetinha.gif')}
+                    /> 
                 </View>
                 <View>
                     <View style={styles.containerInput}>
