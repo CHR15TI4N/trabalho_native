@@ -1,9 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Image, View } from "react-native";
-import { FlatList } from "react-native";
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, StyleSheet, View, Text, Image} from "react-native";
+
+const styles = StyleSheet.create({
+    image: {
+        width: 100, 
+        height: 100,
+    },      
+})
 
 const CountryDetails = ({route}) => {
 
@@ -28,7 +32,13 @@ const CountryDetails = ({route}) => {
             {detailsCountry && (
                 <>
                 <View>
-                    <Text>Capital:{detailsCountry.name.common}</Text>
+                    <Text>Capital: {detailsCountry.capital}</Text>
+                    <Text>Região: {detailsCountry.region}</Text>
+                    <Text>População: {detailsCountry.population}</Text>
+                    <Image
+                        source={{uri: detailsCountry.coatOfArms.png}}
+                        style={styles.image}
+                    />
                 </View>
                 </>
             )}

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FlatList, Image, RefreshControl, SafeAreaView, StyleSheet, Text, TouchableOpacity, refreshControl } from "react-native";
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, refreshControl } from "react-native";
 
 const styles = StyleSheet.create({
     containerSafeArea: {
@@ -65,7 +65,7 @@ const Home = ({navigation}) => {
     
         return (
             <TouchableOpacity style={styles.containerBody} onPress={() => navigationDetails(country)}>
-                <Text style={styles.text}>Nome do Pais: {country.name.common}</Text>
+                <Text style={styles.text}>País: {country.name.common}</Text>
                 <Text style={styles.text}>Capital: {country.capital}</Text>
                 <Image 
                     source={{uri: country.flags.png}} 
