@@ -5,20 +5,15 @@ import { FlatList } from "react-native";
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native";
 
-const DetailsItem = ({details}) => {
-    <View>
-        <Image source={{uri: details.flags.png}} style={{width: 240, height: 144}}/>
-    </View>
-}
+const CountryDetails = ({route}) => {
 
-const CountryDetails = () => {
-
-    const [detailsCountries, setDetailsCountries] = useState()
+    const [detailsCountry, setDetailsCountry] = useState(null)
+    const {id} = route.params;
 
     const fetchDetails = async () => {
         try {
-            const {data} = await axios.get(`https://restcountries.com/v3.1/all`)
-            setDetailsCountries(data)
+            const {data} = await axios.get(`https://restcountries.com/v3.1/name/${id}`)
+            setDetailsCountry(data[0])
         } catch (error) {
             console.log(error)
         }
@@ -26,17 +21,17 @@ const CountryDetails = () => {
 
     useEffect(() => {
         fetchDetails()
-    }, [])
+    }, [id])
  
     return (
         <SafeAreaView>
-            <FlatList
-                data={detailsCountries}
-                renderItem={({item}) => (
-                    <DetailsItem details={item}/>
-                )}
-                keyExtractor={(item) => item.cca3}
-            />
+            {detailsCountry && (
+                <>
+                <View>
+                    <Text>Capital:{detailsCountry.name.common}</Text>
+                </View>
+                </>
+            )}
         </SafeAreaView>
     );
 }

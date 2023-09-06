@@ -32,26 +32,13 @@ const styles = StyleSheet.create({
         height: 34
     },
     flagContainer: {
-        width: 240, 
-        height: 144, 
+        width: 290, 
+        height: 166, 
         borderRadius: 12,
     }
 })
 
-const CountriesItem = ({country}) => {
-    return (
-        <TouchableOpacity style={styles.containerBody}>
-            <Text style={styles.text}>Nome do Pais: {country.name.common}</Text>
-            <Text style={styles.text}>Capital: {country.capital}</Text>
-            <Image 
-                source={{uri: country.flags.png}} 
-                style={styles.flagContainer}
-            />
-        </TouchableOpacity>
-    )
-}
-
-const Home = () => {
+const Home = ({navigation}) => {
 
     const [countries, setCountries] = useState()
 
@@ -67,6 +54,26 @@ const Home = () => {
     useEffect(() => {
         fetchCountries()
     }, [])
+
+    const CountriesItem = ({country}) => {
+
+        const navigationDetails = (country) => {
+            console.log('Details')
+            navigation.navigate('Details', {id: country.name.common})
+        }
+    
+    
+        return (
+            <TouchableOpacity style={styles.containerBody} onPress={() => navigationDetails(country)}>
+                <Text style={styles.text}>Nome do Pais: {country.name.common}</Text>
+                <Text style={styles.text}>Capital: {country.capital}</Text>
+                <Image 
+                    source={{uri: country.flags.png}} 
+                    style={styles.flagContainer}
+                />
+            </TouchableOpacity>
+        )
+    }
 
     return (
         <SafeAreaView style={styles.containerSafeArea}>
