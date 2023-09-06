@@ -1,47 +1,52 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, RefreshControl, SafeAreaView, StyleSheet, Text, TouchableOpacity, refreshControl } from "react-native";
 
 const styles = StyleSheet.create({
     containerSafeArea: {
-        backgroundColor: '#412'
+        backgroundColor: '#412',
     },
     body: {
-        backgroundColor: '#412',
         height: '100%',
         alignItems: 'center',
     },
     containerBody: {
         shadowColor: "#d49b96",
         shadowOffset: {
-            width: 0,
-            height: 1,
+            width: 4,
+            height: 8,
         },
-        shadowOpacity: 0.4,
-        shadowRadius: 3.50,
-        padding: 16,
-        margin: 10,
+        shadowOpacity: 0.5,
+        shadowRadius: 3.30,
+        padding: 14,
+        margin: 24,
+        marginBottom: 8,
         backgroundColor: '#d49b96',
-        borderRadius: 16,
-        alignItems: 'center'
+        borderRadius: 26,
+        alignItems: 'center',
     },
     text: {
         color: '#412',
         fontSize: 18,
         fontWeight: 'bold',
         height: 34
+    },
+    flagContainer: {
+        width: 240, 
+        height: 144, 
+        borderRadius: 12,
     }
 })
 
 const CountriesItem = ({country}) => {
-
-    console.log(country)
-
     return (
         <TouchableOpacity style={styles.containerBody}>
             <Text style={styles.text}>Nome do Pais: {country.name.common}</Text>
             <Text style={styles.text}>Capital: {country.capital}</Text>
-            <Image source={{uri: country.flags.png}} style={{width: 240, height: 144}}/>
+            <Image 
+                source={{uri: country.flags.png}} 
+                style={styles.flagContainer}
+            />
         </TouchableOpacity>
     )
 }

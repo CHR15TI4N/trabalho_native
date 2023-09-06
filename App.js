@@ -4,6 +4,7 @@ import LoginPage from './src/components/screens/LoginPage';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import CountryDetails from './src/components/screens/CountryDetails';
 
 const Stack = createStackNavigator()
 
@@ -11,14 +12,14 @@ function StackNavigator () {
   return (
       <Stack.Navigator>
         <Stack.Screen 
-          name='Home' 
+          name='Países' 
           component={Home} 
           options={{
             headerStyle: {
-              backgroundColor: '#412'
+              backgroundColor: '#412',
             },
             headerTintColor: '#fff',
-            headerLeft: null
+            headerLeft: null,
           }}
         /> 
       </Stack.Navigator>
@@ -39,7 +40,16 @@ export default function App() {
         <Stack.Screen 
           name='Home' 
           component={StackNavigator} 
-          options={{headerShown:false}}
+          options={{
+            headerShown:false,
+          }}
+        />
+        <Stack.Screen 
+          name='Details' 
+          component={CountryDetails} 
+          options={{
+            headerShown:false,
+          }}
         /> 
       </Stack.Navigator>
     </NavigationContainer>
