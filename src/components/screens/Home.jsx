@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, refreshControl } from "react-native";
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, refreshControl } from "react-native";
 
 const styles = StyleSheet.create({
     containerSafeArea: {
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
     },
-    containerBody: {
+    cardBody: {
         shadowColor: "#d49b96",
         shadowOffset: {
             width: 4,
@@ -32,19 +32,19 @@ const styles = StyleSheet.create({
         height: 34
     },
     flagContainer: {
-        width: 290, 
-        height: 166, 
+        width: 290,
+        height: 166,
         borderRadius: 12,
-    }
+    },
 })
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
 
     const [countries, setCountries] = useState()
 
     const fetchCountries = async () => {
         try {
-            const {data} = await axios.get(`https://restcountries.com/v3.1/all`)
+            const { data } = await axios.get(`https://restcountries.com/v3.1/all`)
             setCountries(data)
         } catch (error) {
             console.log(error)
@@ -55,20 +55,20 @@ const Home = ({navigation}) => {
         fetchCountries()
     }, [])
 
-    const CountriesItem = ({country}) => {
+    const CountriesItem = ({ country }) => {
 
         const navigationDetails = (country) => {
             console.log('Details')
-            navigation.navigate('Details', {id: country.name.common})
+            navigation.navigate('Details', { id: country.name.common })
         }
-    
-    
+
+
         return (
-            <TouchableOpacity style={styles.containerBody} onPress={() => navigationDetails(country)}>
+            <TouchableOpacity style={styles.cardBody} onPress={() => navigationDetails(country)}>
                 <Text style={styles.text}>País: {country.name.common}</Text>
                 <Text style={styles.text}>Capital: {country.capital}</Text>
-                <Image 
-                    source={{uri: country.flags.png}} 
+                <Image
+                    source={{ uri: country.flags.png }}
                     style={styles.flagContainer}
                 />
             </TouchableOpacity>
@@ -77,13 +77,15 @@ const Home = ({navigation}) => {
 
     return (
         <SafeAreaView style={styles.containerSafeArea}>
-            <FlatList
-                data={countries}
-                renderItem={({item}) => (
-                    <CountriesItem country={item}/>   
-                )}
-                keyExtractor={(item) => item.cca3}
-            />
+            <View>
+                <FlatList
+                    data={countries}
+                    renderItem={({ item }) => (
+                        <CountriesItem country={item} />
+                    )}
+                    keyExtractor={(item) => item.cca3}
+                />
+            </View>
         </SafeAreaView>
     );
 }

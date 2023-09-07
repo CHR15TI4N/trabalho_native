@@ -78,7 +78,7 @@ const LoginPage = ({navigation}) => {
             }else{
                 setErrorMessageEmail('')
                 setErrorMessagePassword('')
-                navigation.navigate('Home')
+                navigation.navigate('Voltar')
             }
         }else{
             if(password.length < 8){

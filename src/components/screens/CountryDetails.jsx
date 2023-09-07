@@ -4,9 +4,68 @@ import { SafeAreaView, StyleSheet, View, Text, Image} from "react-native";
 
 const styles = StyleSheet.create({
     image: {
-        width: 100, 
-        height: 100,
-    },      
+        height: 190,
+        width: 200,
+        resizeMode: 'contain',
+        margin: -10
+    },
+    cardImage: {
+        backgroundColor: '#290612',
+        borderRadius: 18,
+        marginBottom: 12,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 6,
+            height: 8,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 3.30,
+    },  
+    cardBody: {
+        backgroundColor: '#412',
+        padding: 100,
+        margin: 40,
+        borderRadius: 32,
+        shadowColor: '#412',
+        shadowOffset: {
+            width: 4,
+            height: 8,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 3.30,
+    },   
+    containerSafeArea: {
+        backgroundColor: '#d49b96',
+    },   
+    body: {
+        height: '100%',
+        alignItems: 'center',
+        marginTop: 1
+    },
+    text: {
+        color: '#dbb1ad',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    textError: {
+        color: '#f00',
+        textAlign: 'center',
+        marginBottom: 10
+    },
+    boxText: {
+        marginVertical: 12,
+        gap: 10,
+    },
+    textBrasao: {
+        color: '#dbb1ad',
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'center',
+        marginBottom: 22,
+        marginTop: 12,
+        fontStyle: 'italic'
+    }
 })
 
 const CountryDetails = ({route}) => {
@@ -28,17 +87,29 @@ const CountryDetails = ({route}) => {
     }, [id])
  
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.containerSafeArea}>
             {detailsCountry && (
                 <>
-                <View>
-                    <Text>Capital: {detailsCountry.capital}</Text>
-                    <Text>Região: {detailsCountry.region}</Text>
-                    <Text>População: {detailsCountry.population}</Text>
-                    <Image
-                        source={{uri: detailsCountry.coatOfArms.png}}
-                        style={styles.image}
-                    />
+                <View style={styles.body}>
+                    <View style={styles.cardBody}>
+                        <View style={styles.boxText}>
+                            <Text style={styles.text}>{detailsCountry.name.common}</Text>
+                            <Text style={styles.text}>Capital: {detailsCountry.capital}</Text>
+                        </View>
+                        <View style={styles.cardImage}>
+                        <Text style={styles.textBrasao}>BRASÃO</Text>
+                            {detailsCountry.coatOfArms.png ?
+                                <Image
+                                source={{uri: detailsCountry.coatOfArms.png}}
+                                style={styles.image}
+                            />
+                            :<Text style={styles.textError}>*esse país não possui brasão*</Text>}
+                        </View>
+                        <View style={styles.boxText}>
+                            <Text style={styles.text}>Região: {detailsCountry.region}</Text>
+                            <Text style={styles.text}>População: {detailsCountry.population}</Text>
+                        </View>
+                    </View>
                 </View>
                 </>
             )}

@@ -17,6 +17,8 @@ function StackNavigator () {
           options={{
             headerStyle: {
               backgroundColor: '#412',
+              borderBottomColor: '#d49b96',
+              borderBottomWidth: 1
             },
             headerTintColor: '#fff',
             headerLeft: null,
@@ -38,7 +40,7 @@ export default function App() {
           }}
         /> 
         <Stack.Screen 
-          name='Home' 
+          name='Voltar' 
           component={StackNavigator} 
           options={{
             headerShown:false,
@@ -48,7 +50,10 @@ export default function App() {
           name='Details' 
           component={CountryDetails} 
           options={{
-            headerShown:false,
+            headerStyle: {
+              backgroundColor: '#d49b96',
+            },
+            headerTintColor: '#412'
           }}
         /> 
       </Stack.Navigator>
