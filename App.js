@@ -17,8 +17,8 @@ function StackNavigator () {
           options={{
             headerStyle: {
               backgroundColor: '#412',
-              borderBottomColor: '#d49b96',
-              borderBottomWidth: 1
+              borderBottomColor: '#fccc9f',
+              borderBottomWidth: 1,
             },
             headerTintColor: '#fff',
             headerLeft: null,
@@ -47,11 +47,13 @@ export default function App() {
           }}
         />
         <Stack.Screen 
-          name='Details' 
+          name='Detalhes' 
           component={CountryDetails} 
           options={{
             headerStyle: {
-              backgroundColor: '#d49b96',
+              backgroundColor: '#fccc9f',
+              borderBottomColor: '#412',
+              borderBottomWidth: 2,
             },
             headerTintColor: '#412'
           }}

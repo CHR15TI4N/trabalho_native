@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, refreshControl } from "react-native";
+import { ActivityIndicator, FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const styles = StyleSheet.create({
     containerSafeArea: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     cardBody: {
-        shadowColor: "#d49b96",
+        shadowColor: "#fccc9f",
         shadowOffset: {
             width: 4,
             height: 8,
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         padding: 14,
         margin: 24,
         marginBottom: 8,
-        backgroundColor: '#d49b96',
+        backgroundColor: '#fccc9f',
         borderRadius: 26,
         alignItems: 'center',
     },
@@ -32,9 +32,16 @@ const styles = StyleSheet.create({
         height: 34
     },
     flagContainer: {
-        width: 290,
-        height: 166,
-        borderRadius: 12,
+        width: 280,
+        height: 130,
+        resizeMode: 'contain',
+        shadowColor: "#412",
+        shadowOffset: {
+            width: 4,
+            height: 8,
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 3.30,
     },
 })
 
@@ -59,7 +66,7 @@ const Home = ({ navigation }) => {
 
         const navigationDetails = (country) => {
             console.log('Details')
-            navigation.navigate('Details', { id: country.name.common })
+            navigation.navigate('Detalhes', { id: country.name.common })
         }
 
 
@@ -77,7 +84,8 @@ const Home = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.containerSafeArea}>
-            <View>
+            <StatusBar animated={true} barStyle={'light-content'} showHideTransition={'fade'} hidden={false}/>
+            <View style={styles.containerSafeArea}>
                 <FlatList
                     data={countries}
                     renderItem={({ item }) => (

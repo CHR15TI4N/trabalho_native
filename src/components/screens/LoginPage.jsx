@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
     text: {
         marginLeft: 20,
-        color: '#d49b96',
+        color: '#fccc9f',
         fontSize: 20,
         marginTop: 12,
     },
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         marginTop: 68,
         fontSize: 52,
         fontWeight: 'bold',
-        color: '#c77f79',
+        color: '#fccc9f',
         textAlign: 'center'
     },
     button: {
