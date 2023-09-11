@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native';
 import Home from './src/components/screens/Home';
 import LoginPage from './src/components/screens/LoginPage';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import CountryDetails from './src/components/screens/CountryDetails';
+import RegisterPage from './src/components/screens/RegisterPage';
 
 const Stack = createStackNavigator()
 
@@ -35,6 +34,13 @@ export default function App() {
         <Stack.Screen 
           name='Login' 
           component={LoginPage}
+          options={{
+            headerShown:false,
+          }}
+        />
+        <Stack.Screen 
+          name='Register' 
+          component={RegisterPage}
           options={{
             headerShown:false,
           }}

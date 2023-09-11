@@ -134,6 +134,12 @@ const LoginPage = ({navigation}) => {
                         onPressButton={validationLogin}
                     />
                 </View>
+                <View>
+                    <MyButton
+                        title="Register"
+                        onPressButton={navigation.navigate('Register')}
+                    />
+                </View>
             </View>
         </SafeAreaView>
     );
