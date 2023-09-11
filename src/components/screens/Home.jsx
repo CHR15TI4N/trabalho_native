@@ -69,7 +69,6 @@ const Home = ({ navigation }) => {
             navigation.navigate('Detalhes', { id: country.name.common })
         }
 
-
         return (
             <TouchableOpacity style={styles.cardBody} onPress={() => navigationDetails(country)}>
                 <Text style={styles.text}>País: {country.name.common}</Text>
@@ -80,7 +79,7 @@ const Home = ({ navigation }) => {
                 />
             </TouchableOpacity>
         )
-    }
+    };
 
     return (
         <SafeAreaView style={styles.containerSafeArea}>
