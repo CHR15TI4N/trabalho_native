@@ -54,13 +54,17 @@ const Home = ({ navigation }) => {
     const [countries, setCountries] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+    const countriesPerPage = 10;
 
     const fetchCountries = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get(`https://restcountries.com/v3.1/all`)
-            setCountries([...countries, ...data]);
-            setPage(page + 2);
+            const { data } = await axios.get(`https://restcountries.com/v3.1/all`);
+            const startIndex = (page - 1) * countriesPerPage;
+            const endIndex = startIndex + countriesPerPage;
+            const pageCountries = data.slice(startIndex, endIndex);
+            setCountries([...countries, ...pageCountries]);
+            setPage(page + 1);
         } catch (error) {
             console.log(error)
         } finally {
@@ -116,7 +120,7 @@ const Home = ({ navigation }) => {
                     )}
                     keyExtractor={(item) => item.cca3}
                     onEndReached={fetchCountries}
-                    onEndReachedThreshold={1}
+                    onEndReachedThreshold={0.1}
                     ListFooterComponent={renderFooter}
                 />
             </View>
