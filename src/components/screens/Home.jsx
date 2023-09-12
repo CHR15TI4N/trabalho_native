@@ -43,20 +43,39 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 4,
     },
+    loadingContainer: {
+        alignItems: 'center',
+        paddingVertical: 380,
+      },
 })
 
 const Home = ({ navigation }) => {
 
-    const [countries, setCountries] = useState()
+    const [countries, setCountries] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
 
     const fetchCountries = async () => {
         try {
+            setLoading(true);
             const { data } = await axios.get(`https://restcountries.com/v3.1/all`)
-            setCountries(data)
+            setCountries([...countries, ...data]);
+            setPage(page + 2);
         } catch (error) {
             console.log(error)
+        } finally {
+            setLoading(false)
         }
     }
+
+    const renderFooter = () => {
+        if (!loading) return null;
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#fccc9f" />
+            </View>
+        );
+    };
 
     useEffect(() => {
         fetchCountries()
@@ -96,6 +115,9 @@ const Home = ({ navigation }) => {
                         <CountriesItem country={item} />
                     )}
                     keyExtractor={(item) => item.cca3}
+                    onEndReached={fetchCountries}
+                    onEndReachedThreshold={1}
+                    ListFooterComponent={renderFooter}
                 />
             </View>
         </SafeAreaView>
