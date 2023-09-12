@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
     cardBody: {
         shadowColor: "#fccc9f",
         shadowOffset: {
-            width: 4,
+            width: 6,
             height: 8,
         },
         shadowOpacity: 0.5,
-        shadowRadius: 3.30,
+        shadowRadius: 3.80,
         padding: 14,
         margin: 24,
         marginBottom: 8,
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
             height: 8,
         },
         shadowOpacity: 0.5,
-        shadowRadius: 3.30,
+        shadowRadius: 4,
     },
 })
 
@@ -83,7 +83,12 @@ const Home = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.containerSafeArea}>
-            <StatusBar animated={true} barStyle={'light-content'} showHideTransition={'fade'} hidden={false}/>
+            <StatusBar 
+                animated={true} 
+                barStyle={'light-content'} 
+                showHideTransition={'fade'} 
+                hidden={false}
+            />
             <View style={styles.containerSafeArea}>
                 <FlatList
                     data={countries}

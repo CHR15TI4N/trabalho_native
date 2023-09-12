@@ -39,12 +39,17 @@ export default function App() {
           }}
         />
         <Stack.Screen 
-          name='Register' 
+          name='Caso tenha login, volte' 
           component={RegisterPage}
           options={{
-            headerShown:false,
+            headerStyle: {
+              backgroundColor: '#bd9066',
+              borderBottomColor: '#6e4f35',
+              borderBottomWidth: 2,
+            },
+            headerTintColor: '#422f20',
           }}
-        /> 
+        />
         <Stack.Screen 
           name='Voltar' 
           component={StackNavigator} 

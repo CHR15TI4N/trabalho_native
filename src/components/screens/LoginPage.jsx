@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Image, Text, Vibration, View } from "react-native";
+import { Image, StatusBar, Text, Vibration, View } from "react-native";
 import { SafeAreaView, StyleSheet, TextInput } from "react-native";
 import '../images/planetinha.gif'
 import MyButton from "../MyButton";
@@ -51,12 +51,23 @@ const styles = StyleSheet.create({
     error: {
         color: '#f00',
         paddingLeft: 16,
-        fontStyle: 'italic'
+        fontStyle: 'italic',
+        fontSize: 16
     },
     imageContainer: {
         height: 200,
         resizeMode: 'contain',
         marginBottom: -58
+    },
+    buttonBox: {
+        alignItems: 'center',
+        marginTop: 16
+    },
+    textOther: {
+        textAlign: 'center',
+        marginTop: 10,
+        color: '#fccc9f',
+        fontWeight: 'bold'
     }
 })
 
@@ -95,6 +106,12 @@ const LoginPage = ({navigation}) => {
 
     return (
         <SafeAreaView style={styles.containerSafeArea}>
+            <StatusBar 
+                animated={true} 
+                barStyle={'light-content'} 
+                showHideTransition={'fade'} 
+                hidden={false}
+            />
             <View style={styles.body}>
                 <View>
                     <Text style={styles.containerTitle}>PAISES</Text>
@@ -128,16 +145,15 @@ const LoginPage = ({navigation}) => {
                         />
                     </View>
                 </View>
-                <View>
+                <View style={styles.buttonBox}>
                     <MyButton
                         title="Login"
                         onPressButton={validationLogin}
                     />
-                </View>
-                <View>
+                    <Text style={styles.textOther}>Ou</Text>
                     <MyButton
-                        title="Register"
-                        onPressButton={navigation.navigate('Register')}
+                        title="Registrar-se"
+                        onPressButton={() => navigation.navigate('Caso tenha login, volte')}
                     />
                 </View>
             </View>

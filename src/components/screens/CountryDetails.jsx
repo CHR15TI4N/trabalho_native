@@ -15,11 +15,11 @@ const styles = StyleSheet.create({
         marginBottom: 26,
         shadowColor: '#fccc9f',
         shadowOffset: {
-            width: 6,
-            height: 8,
+            width: 0,
+            height: 0,
         },
         shadowOpacity: 0.5,
-        shadowRadius: 3.30,
+        shadowRadius: 20,
         paddingBottom: 18,
         paddingHorizontal: 8
     },  
@@ -94,7 +94,12 @@ const CountryDetails = ({route}) => {
  
     return (
         <SafeAreaView style={styles.containerSafeArea}>
-            <StatusBar animated={true} barStyle={'dark-content'} showHideTransition={'fade'} hidden={false}/>
+            <StatusBar 
+                animated={true} 
+                barStyle={'dark-content'} 
+                showHideTransition={'fade'} 
+                hidden={false}
+            />
             {detailsCountry && (
                 <>
                 <View style={styles.body}>

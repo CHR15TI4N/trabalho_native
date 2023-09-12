@@ -4,9 +4,12 @@ const styles = StyleSheet.create({
     buttonContainer: {
         borderRadius: 10,
         backgroundColor: '#bd9066',
-        width: 78,
-        height: 42,
-        margin: 54
+        width: 116,
+        height: 48,
+        margin: 52,
+        padding: 3,
+        marginBottom: -1,
+        marginTop: 10,
     },
     text: {
         textAlign: 'center',
