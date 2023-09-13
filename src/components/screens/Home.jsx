@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     loadingContainer: {
         alignItems: 'center',
         paddingVertical: 380,
-      },
+    },
 })
 
 const Home = ({ navigation }) => {

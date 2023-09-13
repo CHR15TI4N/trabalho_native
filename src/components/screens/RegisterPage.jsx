@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.50,
         width: 300,
         margin: 15,
+        marginTop: 10,
         borderWidth: 3,
         borderColor: '#412',
         borderRadius: 6,
