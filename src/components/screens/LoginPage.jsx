@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
 
 const LoginPage = ({navigation}) => {
 
-    const [email, setEmail] = useState('test@gmail.com')
-    const [password, setPassword] = useState('12345678')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [errorMessageEmail, setErrorMessageEmail] = useState('')
     const [errorMessagePassword, setErrorMessagePassword] = useState('')
 

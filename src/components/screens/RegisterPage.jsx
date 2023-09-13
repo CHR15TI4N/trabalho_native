@@ -161,7 +161,7 @@ const RegisterPage = ({navigation}) => {
                             autoComplete='name'
                             onChangeText={setRegisterName}
                             value={registerName}
-                            placeholderTextColor='#fff'
+                            placeholderTextColor='#8a674a'
                         />
                         <Text style={styles.text}>Insira seu Email:
                             <Text style={styles.error}> {errorEmail}</Text>
@@ -173,7 +173,7 @@ const RegisterPage = ({navigation}) => {
                             autoComplete='email'
                             onChangeText={setRegisterEmail}
                             value={registerEmail}
-                            placeholderTextColor='#fff'
+                            placeholderTextColor='#8a674a'
                         />
                         <Text style={styles.text}>Insira sua senha:
                             <Text style={styles.error}> {errorPassword}</Text>
@@ -185,7 +185,7 @@ const RegisterPage = ({navigation}) => {
                             onChangeText={setRegisterPassword}
                             value={registerPassword}
                             secureTextEntry={true}
-                            placeholderTextColor='#fff'
+                            placeholderTextColor='#8a674a'
                         />
                         <Text style={styles.text}>Sua senha novamente:
                             <Text style={styles.error}> {errorPasswordDiferent}</Text>
@@ -197,7 +197,7 @@ const RegisterPage = ({navigation}) => {
                             onChangeText={setValidPassword}
                             value={validPassword}
                             secureTextEntry={true}
-                            placeholderTextColor='#fff'
+                            placeholderTextColor='#8a674a'
                         />  
                     </View>
                     <View style={styles.buttonContainer}>
